@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+  }
+  .score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #0022ff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .score-label {
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  #label1 {
+    margin-bottom: 100px;
+    margin-left:100px;
+  }
+
+  #label2{
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  #date {
+    width: 415px;
+    height: 50px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    border: 1px solid blue;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  button[type="submit"] {
+    margin-top: 20px;
+    background-color: blue; /* Χρώμα φόντου */
+    border: none; /* Καμία περιγραμμή */
+    color: white; /* Χρώμα κειμένου */
+    padding: 10px 20px; /* Προσαρμογή παραμέτρων πλάτους / ύψους */
+    text-align: center; /* Κείμενο κεντραρισμένο */
+    text-decoration: none; /* Χωρίς υπογεγραμμένο κείμενο */
+    display: inline-block; /* Καθιστά το κουμπί ένα block element */
+    font-size: 12px; /* Μέγεθος γραμματοσειράς */
+    margin: 4px 2px; /* Περιθώρια */
+    cursor: pointer; /* Καθορίζει το στυλ του δρομέα κατά την αναστολή */
+    border-radius: 10px; /* Στρογγυλεμένες άκρες */
+    margin-left: 140px;
+   
+  }
+
+  .logout-btn {
+    margin-top: 20px;
+    background-color: blue; /* Χρώμα φόντου */
+    border: none; /* Καμία περιγραμμή */
+    color: white; /* Χρώμα κειμένου */
+    padding: 10px 20px; /* Προσαρμογή παραμέτρων πλάτους / ύψους */
+    text-align: center; /* Κείμενο κεντραρισμένο */
+    text-decoration: none; /* Χωρίς υπογεγραμμένο κείμενο */
+    display: inline-block; /* Καθιστά το κουμπί ένα block element */
+    font-size: 12px; /* Μέγεθος γραμματοσειράς */
+    margin: 4px 2px; /* Περιθώρια */
+    cursor: pointer; /* Καθορίζει το στυλ του δρομέα κατά την αναστολή */
+    border-radius: 10px; /* Στρογγυλεμένες άκρες */
+    margin-left: 1200px;
+    
+  }
+ 
