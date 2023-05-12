@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weight Settings</title>
+    <link rel="stylesheet" href="weights.css">
+  </head>
+  <body>
+   
+    <form method="POST" action="save_weights.php">
+        <h2>Rating From Customer </h2>
+        <table>
+         
+          <tr>
+            <td>speed</td>
+            <td><input type="number" name="cat1_metric1_weight" min="0" max="100" step="0.01" value="25"></td>
+          </tr>
+          <tr>
+            <td>accuracy</td>
+            <td><input type="number" name="cat1_metric2_weight" min="0" max="100" step="0.01" value="25"></td>
+          </tr>
+          <tr>
+            <td>customer_service</td>
+            <td><input type="number" name="cat1_metric3_weight" min="0" max="100" step="0.01" value="25"></td>
+          </tr>
+          
+        </table>
+        <h2> Rating From Store</h2>
+        <table>
+         
+          <tr>
+            <td>speed </td>
+            <td><input type="number" name="cat2_metric1_weight" min="0" max="100" step="0.01" value="33.33"></td>
+          </tr>
+          <tr>
+            <td>accuracy</td>
+            <td><input type="number" name="cat2_metric2_weight" min="0" max="100" step="0.01" value="33.33"></td>
+          </tr>
+          <tr>
+            <td>customer_service</td>
+            <td><input type="number" name="cat2_metric3_weight" min="0" max="100" step="0.01" value="33.33"></td>
+          </tr>
+        </table>
+        <h2>Rating From Broker</h2>
+        <table>
+          
+          <tr>
+            <td>speed</td>
+            <td><input type="number" name="cat3_metric1_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+          <tr>
+            <td>accuracy</td>
+            <td><input type="number" name="cat3_metric2_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+          <tr>
+            <td>customer_service</td>
+            <td><input type="number" name="cat3_metric2_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+        </table>
+        <h2>Characteristics of the distributor</h2>
+        <table>
+          <tr>
+            <td>Average distance</td>
+            <td><input type="number" name="cat3_metric2_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+          <tr>
+            <td>overhead</td>
+            <td><input type="number" name="cat3_metric2_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+          <tr>
+            <td>startwork</td>
+            <td><input type="number" name="cat3_metric2_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+          <tr>
+            <td>endwork</td>
+            <td><input type="number" name="cat3_metric2_weight" min="0" max="100" step="0.01" value="50"></td>
+          </tr>
+          <tr>
+            <td><button type="submit">Submit</button></td>
+            <td style="display: inline-block;"><button type="button" class="logout-btn" onclick="window.location.href='logout.php'">Logout</button></td>
+            <td style="display: inline-block;"><button type="button" class="logout-btn" onclick="window.location.href='form_broker.html'">Back</button></td>
+          </tr>
+
+    </form>
+  </body>
+  
+</html>
+
+    
