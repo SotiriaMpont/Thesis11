@@ -1,0 +1,90 @@
+.table-form-container {
+    display: flex;
+    align-items: center;
+    
+
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.8);
+    margin-top: -100px;
+  }
+  
+  table {
+    margin-right: 20px;
+  }
+  
+  form {
+    overflow: hidden;
+  }
+
+  button {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+
+  
+  form button {
+    flex-basis: calc(33.33% - 10px);
+    margin: 5px;
+  }
+
+  table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 50%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  h2 {
+    margin-top: 30px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .logout-btn {
+    background-color: #dc3545;
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
+  
+  .logout-btn:hover {
+    background-color: #c82333;
+  }
+  
+  button:active, .logout-btn:active {
+    background-color: #0056b3;
+  }
+  
+  button:focus, .logout-btn:focus {
+    outline: none;
+  }
+  
+  button:disabled, .logout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
