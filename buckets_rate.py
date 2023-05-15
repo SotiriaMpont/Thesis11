@@ -13,6 +13,7 @@ import networkx as nx
 from random import uniform
 import pandas as pd
 import numpy as np
+import sys
 
 
                                                      #ΜΕΤΡΙΚΗ ΤΟΥ COSTUMER 
@@ -24,7 +25,7 @@ mydatabase = mysql.connector.connect(
     database="diplomatiki11"
   )
 
-    
+   
 cursor = mydatabase.cursor()
 
 #selectarw gia na ftiaxw to DataFrame
@@ -34,6 +35,9 @@ cursor.execute("SELECT * FROM metrics_costumer")
 results_metrics_costumer= cursor.fetchall()
 
 #print(results_metrics_costumer)
+
+cursor.execute("SELECT * FROM weights")
+row = cursor.fetchone()
 
 metrics_costumer_dataframe = pd.DataFrame(results_metrics_costumer, columns=[desc[0] for desc in cursor.description])
 
@@ -68,15 +72,15 @@ metrics_costumer_dataframe['bucket_percentile_customer_service'] = metrics_costu
 #realistika apotelesmata,proxwrame!!!!!!!
 
 #BHMA2: υπολογίζω μετρική  costumer kai insert metrics_costumer
-criterion1_weight=2
-criterion2_weight=2
-criterion3_weight=2
+speed_customer_weight=row[0]
+accuracy_customer_weight=row[1]
+cust_service_customer_weight=row[2]
 
 for index, row in metrics_costumer_dataframe.iterrows():   
   total_cost_costumer = 0
-  total_cost_costumer += row['bucket_percentile_speed'] * criterion1_weight
-  total_cost_costumer += row['bucket_percentile_accuracy'] * criterion2_weight
-  total_cost_costumer += row['bucket_percentile_customer_service'] * criterion3_weight
+  total_cost_costumer += row['bucket_percentile_speed'] * speed_customer_weight
+  total_cost_costumer += row['bucket_percentile_accuracy'] * accuracy_customer_weight
+  total_cost_costumer += row['bucket_percentile_customer_service'] * cust_service_customer_weight
   
   #print(total_cost_costumer)    # bgazei noumero twra an einai realistiko den 3erw 
     
@@ -154,9 +158,9 @@ metrics_store_dataframe['bucket_percentile_customer_service'] = metrics_store_da
 
 
 #Bημα2: βρισκω μετρικη για κάθε κριτική διανομέα από το κατάστημα με βάση το rating, insert metrics_store
-speed_store_weight=2 
-accuracy_store_weight=2 
-customer_service_weight=2 
+speed_store_weight=row[3]
+accuracy_store_weight=row[4]
+customer_service_weight=row[5]
 
 for index, row in metrics_store_dataframe.iterrows():   
   total_cost_store = 0
@@ -238,15 +242,15 @@ metrics_company_dataframe['bucket_percentile_customer_service'] = metrics_compan
 
 
 #Bημα2: βρισκω μετρικη για κάθε κριτική διανομέα από την εταιρεία με βάση το rating, insert metrics_company 
-speed_broker_weight=2 
-accuracy_broker_weight=2 
-customer_service_weight=2 
+speed_broker_weight=row[6]
+accuracy_broker_weight=row[7]
+cust_service_broker_weight=row[8]
 
 for index, row in metrics_company_dataframe.iterrows():   
   total_cost_company = 0
   total_cost_company+= row['bucket_percentile_speed'] * speed_broker_weight
   total_cost_company+= row['bucket_percentile_accuracy'] * accuracy_broker_weight
-  total_cost_company+= row['bucket_percentile_speed'] * customer_service_weight
+  total_cost_company+= row['bucket_percentile_customer_service'] * cust_service_broker_weight
   
   #print(total_cost_company )    
     
@@ -328,10 +332,10 @@ metrics_dataframe['bucket_sunepeia_lixi'] = metrics_dataframe['bucket_sunepeia_l
 #print(metrics_dataframe)
 
 #βημα2: υπολογιζω rate_metrics και update metrics table 
-avg_dist_weight = 2
-overhead_weight = 2
-startwork_diff_weight = 2
-endwork_diff_weight = 2
+avg_dist_weight = row[9]
+overhead_weight =row[10]
+startwork_diff_weight = row[11]
+endwork_diff_weight = row[12]
 
 for index, row in metrics_dataframe.iterrows():   
     total_cost_metrics = 0
