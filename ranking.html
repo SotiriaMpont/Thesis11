@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Distributor Rankings</title>
+  <style>
+    body {
+      background-image: url("blue_background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+   
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .table-container {
+      width: 60%; /* Adjust the width as desired */
+      margin: 0 auto; /* Center the table horizontally */
+      margin-bottom: 20px;
+      border-radius: 10px; /* Adjust the border radius as desired */
+      overflow: hidden; /* Ensure table corners are rounded */
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 28%; /* Adjust the width as desired */
+      margin: 0 auto; /* Center the table horizontally */
+      margin-bottom: 20px;
+      margin-left: 550px;
+      border-radius: 20px; /* Adjust the border radius as desired */
+      
+    }
+    
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      
+
+    }
+ 
+
+    td{
+      background-color: white;
+      color:rgb(1, 97, 176);
+    }
+    
+    thead {
+      background-color: rgb(1, 97, 176);
+    }
+    
+    th {
+      font-weight: bold;
+      color: white;
+    }
+    
+    tr:nth-child(even) {
+      background-color: rgb(1, 97, 176);
+    }
+    
+    tr:hover {
+      background-color: rgb(1, 97, 176);
+    }
+    
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 24px; /* Adjust the font size as desired */
+    }
+    
+    
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+      margin-bottom: 20px;
+    }
+    
+   
+    .logout-btn {
+      margin: 10px; /* Adjust the margin as desired */
+      background-color: rgb(2, 121, 218);
+      border: none;
+      color: white;
+      padding: 6px 12px; /* Adjust the padding as desired */
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 10px;
+      max-width: 90px; /* Set a maximum width for the buttons */
+    }
+
+    #date {
+      width: 415px;
+      height: 50px;
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      border: 1px solid white;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-color :transparent;
+      color: white ;
+      margin-left: 550px;
+
+    }
+
+    button[type="submit"] {
+      margin-top: 20px;
+      background-color: rgb(2, 121, 218); /* Χρώμα φόντου */
+      border: none; /* Καμία περιγραμμή */
+      color: white; /* Χρώμα κειμένου */
+      padding: 10px 20px; /* Προσαρμογή παραμέτρων πλάτους / ύψους */
+      text-align: center; /* Κείμενο κεντραρισμένο */
+      text-decoration: none; /* Χωρίς υπογεγραμμένο κείμενο */
+      display: inline-block; /* Καθιστά το κουμπί ένα block element */
+      font-size: 12px; /* Μέγεθος γραμματοσειράς */
+      margin: 4px 2px; /* Περιθώρια */
+      cursor: pointer; /* Καθορίζει το στυλ του δρομέα κατά την αναστολή */
+      border-radius: 10px; /* Στρογγυλεμένες άκρες */
+      margin-left: 680px;
+      margin-bottom: 20px;
+     
+    }
+    
+      
+  </style>
+</head>
+<body>
+  <form method="post" action="ranking.php ">
+
+  <h1>Distributor Rankings</h1>
+  <div>
+    <input type="date" id="date" name="date">
+  </div>
+
+  <button type="submit">Search by day!</button>
+  
+  <table>
+    <thead>
+      <tr>
+        <th class="hidden-column">Rank</th>
+        <th class="hidden-column">Distributor</th>
+        <th class="hidden-column">Total Scores</th>
+
+        
+    </tr>
+      </tr>
+    </thead>
+    <tbody>
+      <?php echo  $tableData ?>
+    </tbody>
+
+    
+  </table>
+ 
+  
+  <button href="# " type="button"class="logout-btn" onclick="window.location.href='logout.php'">Logout</button>
+  <button type="button" class="logout-btn" onclick="window.location.href='form_broker.html'">Back</button>
+
+</form> 
+
+</body>
+
+<script>
+
+</script>
