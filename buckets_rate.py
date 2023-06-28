@@ -28,23 +28,48 @@ mydatabase = mysql.connector.connect(
    
 cursor = mydatabase.cursor()
 
-#selectarw gia na ftiaxw to DataFrame
-        
+# Fetching the values from the desired table
+cursor.execute("SELECT * FROM weights")
+weights_row = cursor.fetchone()
+
+# Extracting the values from the fetched row
+speed_customer_weight = weights_row[0]
+accuracy_customer_weight = weights_row[1]
+cust_service_customer_weight = weights_row[2]
+speed_store_weight= weights_row[3]
+accuracy_store_weight= weights_row[4]
+customer_service_weight= weights_row[5]
+speed_broker_weight=weights_row[6]
+accuracy_broker_weight=weights_row[7]
+cust_service_broker_weight=weights_row[8]
+avg_dist_weight = weights_row[9]
+overhead_weight =weights_row[10]
+startwork_diff_weight = weights_row[11]
+endwork_diff_weight = weights_row[12]
+
+
+    
 cursor.execute("SELECT * FROM metrics_costumer")
 
 results_metrics_costumer= cursor.fetchall()
 
+# Close the cursor and connection
+
+
 #print(results_metrics_costumer)
 
-cursor.execute("SELECT * FROM weights")
-row = cursor.fetchone()
+
 
 metrics_costumer_dataframe = pd.DataFrame(results_metrics_costumer, columns=[desc[0] for desc in cursor.description])
 
-
-# Close the cursor and connection
 cursor.close()
 mydatabase.close()
+
+
+#cursor.execute("SELECT * FROM weights")
+#row = cursor.fetchone()
+#cursor.close()
+#mydatabase.close()
 
 # Print the DataFrame
 #print(metrics_costumer_dataframe)
@@ -72,9 +97,7 @@ metrics_costumer_dataframe['bucket_percentile_customer_service'] = metrics_costu
 #realistika apotelesmata,proxwrame!!!!!!!
 
 #BHMA2: υπολογίζω μετρική  costumer kai insert metrics_costumer
-speed_customer_weight=row[0]
-accuracy_customer_weight=row[1]
-cust_service_customer_weight=row[2]
+
 
 for index, row in metrics_costumer_dataframe.iterrows():   
   total_cost_costumer = 0
@@ -158,9 +181,7 @@ metrics_store_dataframe['bucket_percentile_customer_service'] = metrics_store_da
 
 
 #Bημα2: βρισκω μετρικη για κάθε κριτική διανομέα από το κατάστημα με βάση το rating, insert metrics_store
-speed_store_weight=row[3]
-accuracy_store_weight=row[4]
-customer_service_weight=row[5]
+
 
 for index, row in metrics_store_dataframe.iterrows():   
   total_cost_store = 0
@@ -242,9 +263,7 @@ metrics_company_dataframe['bucket_percentile_customer_service'] = metrics_compan
 
 
 #Bημα2: βρισκω μετρικη για κάθε κριτική διανομέα από την εταιρεία με βάση το rating, insert metrics_company 
-speed_broker_weight=row[6]
-accuracy_broker_weight=row[7]
-cust_service_broker_weight=row[8]
+
 
 for index, row in metrics_company_dataframe.iterrows():   
   total_cost_company = 0
@@ -269,7 +288,7 @@ for index, row in metrics_company_dataframe.iterrows():
   values_metriki = (total_cost_company,row['bucket_percentile_speed'],row['bucket_percentile_accuracy'],row['bucket_percentile_customer_service'], row['distributor_id'], row['shift'])
   cursor.execute(update_total_cost_metrics, values_metriki)
   mydatabase.commit()
-  
+
                    #metriki gia to overhead, sinepeia stin enarxi/lixi , average_distance (dld twn xaraktiristikwn twn dianomewn pou xw  sto metrics)
 
 #ΒΗΜΑ1 : κανονικοποιηση
@@ -315,27 +334,18 @@ metrics_dataframe['percentile_sunepeia_lixi'] = metrics_dataframe['sunepeia_lixi
 
 num_buckets = 10
 bucket_labels = [num_buckets] + list(reversed(range(1, num_buckets)))
-
-metrics_dataframe['bucket_avg_dist'] = pd.cut(metrics_dataframe['percentile_rank_avg_dist'], bins=num_buckets, labels=range(1, num_buckets+1))
-#bucket overhead
-metrics_dataframe['bucket_overhead'] = pd.cut(metrics_dataframe['percentile_overhead'], bins=num_buckets, labels=range(1, num_buckets+1))
-#sunepeia_enarxi
-metrics_dataframe['bucket_sunepeia_enarxi'] = pd.cut(metrics_dataframe['percentile_supenepeia_enarxi'], bins=num_buckets, labels=range(1, num_buckets+1))
-#sunepeia_lixi
-metrics_dataframe['bucket_sunepeia_lixi'] = pd.cut(metrics_dataframe['percentile_sunepeia_lixi'], bins=num_buckets, labels=range(1, num_buckets+1))
+metrics_dataframe['bucket_overhead'] = pd.cut(metrics_dataframe['percentile_overhead'], bins=num_buckets, labels=list(reversed(range(1, num_buckets+1))))
+metrics_dataframe['bucket_avg_dist'] = pd.cut(metrics_dataframe['percentile_rank_avg_dist'], bins=num_buckets, labels=list(reversed(range(1, num_buckets+1))))
+metrics_dataframe['bucket_sunepeia_enarxi'] = pd.cut(metrics_dataframe['percentile_supenepeia_enarxi'], bins=num_buckets, labels=list(reversed(range(1, num_buckets+1))))
+metrics_dataframe['bucket_sunepeia_lixi'] = pd.cut(metrics_dataframe['percentile_sunepeia_lixi'], bins=num_buckets, labels=list(reversed(range(1, num_buckets+1))))
 
 metrics_dataframe['bucket_overhead'] = metrics_dataframe['bucket_overhead'].astype(int)
 metrics_dataframe['bucket_avg_dist'] = metrics_dataframe['bucket_avg_dist'].astype(int)
 metrics_dataframe['bucket_sunepeia_enarxi'] = metrics_dataframe['bucket_sunepeia_enarxi'].astype(int)
 metrics_dataframe['bucket_sunepeia_lixi'] = metrics_dataframe['bucket_sunepeia_lixi'].astype(int)
-
 #print(metrics_dataframe)
 
 #βημα2: υπολογιζω rate_metrics και update metrics table 
-avg_dist_weight = row[9]
-overhead_weight =row[10]
-startwork_diff_weight = row[11]
-endwork_diff_weight = row[12]
 
 for index, row in metrics_dataframe.iterrows():   
     total_cost_metrics = 0
@@ -419,7 +429,8 @@ mydatabase.commit()
 mydatabase.close()
 
 
-for index, row in dataframe5.iterrows():   
+for index, row in dataframe5.iterrows(): 
+  
     mydatabase = mysql.connector.connect(
         host="localhost",
         user="root",
